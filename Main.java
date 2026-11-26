@@ -186,7 +186,7 @@ public class Main {
         return time;
     }
 
-    // Считывает целое положительное число без использования parseInt.
+    // Считывает целое число вручную по отдельным цифрам.
     // Возвращает -1, если введены не цифры.
     private static int readInteger() {
         String value = scanner.nextLine().trim();
@@ -204,7 +204,14 @@ public class Main {
                 return -1;
             }
 
-            number = number * 10 + (symbol - '0');
+            int digit = symbol - '0';
+
+            // Не позволяем числу выйти за пределы типа int.
+            if (number > 214748364 || (number == 214748364 && digit > 7)) {
+                return -1;
+            }
+
+            number = number * 10 + digit;
         }
 
         return number;
